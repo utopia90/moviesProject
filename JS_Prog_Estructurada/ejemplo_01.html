@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instruccuiones básicas JS</title>
+</head>
+<body>
+    <h1>Instrucciones básicas JS</h1>
+    <div class="fondo-rojo">Fondo rojo</div>
+
+    <style>
+        h1 {
+            color: blue;
+        }
+        .fondo-rojo {
+            background-color: red;
+            color: white;
+        }
+        .fondo-verde {
+            background-color: green;
+            color: white;
+        }
+    </style>
+    <script>
+        /* window.alert("alert muestra un mensaje"); */
+        document.write("<h2>document.write() escribe HTML</h2>");
+        console.log("console.log escribe en la consola");
+        /* Tipos de datos:
+            Primitivos:
+                Number
+                Booleano
+                undefined   No se ha declarado o no se ha asignado
+                null    : Tiene algo (No es undefined) pero que no apunta a ningún sitio
+            Objetos:
+                Tienen características (propiedades) y utilidades (acciones)
+                Tienen  variables miembro   y métodos (acciones, funciones miembro, mensajes)
+                Tipos de objetos:
+                    String (cadena de texto) ""
+                    Arrays (matrices)
+                    DOM: Document Object Model -> El HTML en una estructura jerárquica en memoria
+                    Object (personalizados)
+                    Funciones
+        */
+        var edad = 27;
+        var edadReal = 37;
+        var parrafo = "<p>Edad: " + edad + "</p>";
+        var altura = 189.5345454522245454545452222222344343;
+        altura = 156;
+        altura = 170;
+        parrafo = "<p>Altura " + altura + "</p>";
+        document.write(parrafo.toUpperCase());
+        document.write("Longitud del párrafo: " + parrafo.length);
+        var respuesta = true;
+        respuesta = 170 == altura; 
+        respuesta = parrafo != "hola";
+        var ninguno = null;
+        document.write("<p> Respuesta " + respuesta + "</p>");
+        document.getElementsByClassName("fondo-rojo")[0].className = "fondo-verde";
+
+        document.write("La palabra 'altura' esta en la posicion " + parrafo.indexOf("Altura", 0));
+
+    </script>
+</body>
+</html>
