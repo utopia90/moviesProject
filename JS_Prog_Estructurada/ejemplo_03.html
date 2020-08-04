@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores</title>
+</head>
+
+<body>
+    <h1>Operadores</h1>
+    <input type="number" id="num_1" step="0.01" /><br />
+    <input type="number" id="num_2" step="0.01" /><br />
+    <!-- (**) Lo que pasamos como valor del argumento en la llamada a una función... -->
+    <input type="button" onclick="sumar( true )" value="Suma entera" /><br />
+    <input type="button" onclick="sumar( false )" value="Suma decimal" /><br />
+    <input type="number" id="resultado" /><br />
+    <script>
+        // Ambitos de variables:. Globales, local a función y local a bloque
+        // Globales: Existen en toda la aplicación,
+        // fuera de cualquier función, deben ser pocas por limpieza de código
+        var valorNum1 = document.getElementById("num_1");
+        var valorNum2 = document.getElementById("num_2");
+
+        // Declación e implementación de la función
+        function inicializar() {
+            valorNum1.value = "0";
+            valorNum2.value = "0";
+        }
+        // Llamamos a la función
+        inicializar();
+
+        /* (**) ... será el valor del paramétro que recibe esa función  */
+        function sumar(siCalcularEntero) {
+            // Variables con var dentro de una función, son locales a la función
+            // Se crean cada vez que se llama a la función y dejan de existir al terminar la función
+            // Las variables locales MACHACAN a las globales.  Los parámetros son variables LOCALES
+            var num_1, num_2;
+
+            // Después de un IF va un UNA instrucción, que se puede sustituir por un bloque 
+            if (siCalcularEntero) {
+                num_1 = parseInt(valorNum1.value);
+                num_2 = parseInt(valorNum2.value);
+            } else {
+                var num_1 = parseFloat(valorNum1.value);
+                var num_2 = parseFloat(valorNum2.value);
+            }
+            // Un bloque se considera una instrucción con varias líneas de código
+            {
+                document.getElementById("resultado").value = num_1 + num_2;
+                document.getElementById("resultado").readOnly = true;
+                document.getElementById("resultado").disabled = true;
+            }
+            inicializar();
+        }
+        // f(x) = 2 * x
+        // f(x) = x * x
+        // f(y) = 2 * y
+    </script>
+</body>
+
+</html>

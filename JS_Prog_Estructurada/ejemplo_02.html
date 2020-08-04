@@ -16,29 +16,53 @@
     </ul>
 
     <script>
-
         var unaVariable;
         unaVariable = 100;
         var siEsParecido = unaVariable == "100";
-        document.write("<p>siEsParecido = "  + siEsParecido + " </p>" );
+        document.write("<p>siEsParecido = "  + String(siEsParecido) + " </p>" );
         var siEsIdentico = unaVariable === "100";
-        document.write("<p>siEsIdentico = "  + siEsIdentico + " </p>" );
+        document.write("<p>siEsIdentico = "   + String(siEsIdentico) + " </p>" );
 
         var texto = "";
         document.write("<p>Imposible : </p>" );
+
         try {
             document.write("<p>Error  : " + variableInexis + "</p>");   // ¡Excepción controlada!
-        } 
+        }
         catch (excepcion) {
             document.write("<br>Ha ocurrido un error " + excepcion);
         }
-        document.noSoyUnaFuncion();  // ¡Excepción NO controlada!
-        document.write("<p>Esto nunca se ejecuta</p>" );
-
 //  Ejercicio:   ¿1 == true? ¿5 == true? ¿0 == false? 
 //               ¿false == ""?  ¿100*5 == "100*5"?   ¿false == null?
 // Si son parecidos ¿También son idénticos?
 
+        document.write("<br/> ¿1 == true? = " + ( 1 == true)) ;
+        document.write("<br/> ¿5 == true? = " + ( 5 == true)) ;
+        document.write("<br/> ¿0 == false?  = " + ( 0 == false)) ;
+        document.write("<br/> ¿false == ''? = " + (false == '')) ;
+        document.write("<br/> ¿100*5 == '100*5'? = " + (100*5 == '100*5')) ;
+        document.write("<br/> '' == null? = " + ( '' == null)) ;
+        document.write("<br/> [] == false? = " + ( [] == false)) ;
+
+        document.write("<br/> ¿1 === true? = " + ( 1 === true)) ;
+        document.write("<br/> ¿5 === true? = " + ( 5 === true)) ;
+        document.write("<br/> ¿0 === false?  = " + ( 0 === false)) ;
+        document.write("<br/> ¿false === ''? = " + (false === '')) ;
+        document.write("<br/> ¿100*5 === '100*5'? = " + (100*5 === '100*5')) ;
+        document.write("<br/> '' === null? = " + ( '' === null)) ;
+        document.write("<br/> [] === false? = " + ( [] === false)) ;
+
+        document.write("<br/>Casting implícito (Conversión automática) num->str: " + 300);
+        document.write("<br/>Casting explícito (Conversión indicada) num->str: " + String(300.3));
+
+        document.write("<br/><br/>Casting implícito (Conversión automática) str->num: " + ("50" + 3));
+        document.write("<br/>Casting implícito (Conversión automática) str->num: " + ("50" * 3));
+        document.write("<br/>Casting explícito (Conversión indicada) parseInt: " + parseInt("200.13"));
+        document.write("<br/>Casting explícito (Conversión indicada) parseFloat: " + parseFloat("200.13"));
+        document.write("<br/>Casting explícito (Conversión indicada) Number: " + Number("200.13"));
+
+document.noSoyUnaFuncion();  // ¡Excepción NO controlada!
+        document.write("<p>Esto nunca se ejecuta</p>" );
     </script>
 </body>
 </html>
