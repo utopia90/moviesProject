@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Arrays</h1>
+    <script>
+        // FORMAS DE CREAR ARRAYS:
+        var listaIngredientes = new Array();
+        // Para añadir elementos, asignamos a sus posiciones con [ ]
+        listaIngredientes[0] = "Espinacas"; // El primer elemento es el cero
+        listaIngredientes[1] = "Tortilla";
+        listaIngredientes[2] = "Queso";
+        // En los arrays, los elementos que no se hayan asignado 
+        // tienen el valor "undefined"
+        listaIngredientes[10] = "Pan";
+        // Para usar los elementos, también con los corchetes
+        document.write("El menú lleva " 
+            + listaIngredientes[0]  + " y "  + listaIngredientes[1]);
+
+        document.write("<br>Ingredientes: " + listaIngredientes.length);
+        // El último elemento del array es
+        document.write("<br>Último igr: " 
+            + listaIngredientes[listaIngredientes.length - 1]);
+
+        // Para recorrer un array necesitamos de otra instrucción repetitiva
+        // Son los bucles
+
+        document.write("<h2>Todos los ingredientes</h2><ul>");
+        var indice = 0;
+        while (indice < listaIngredientes.length) {
+            document.write("<li>" + listaIngredientes[indice] + "</li>");
+            indice = indice + 1;
+        }
+        document.write("<ul>");
+
+    </script>
+</body>
+</html>

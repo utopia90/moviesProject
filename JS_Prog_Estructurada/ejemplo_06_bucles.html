@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Bucles</h1>
+
+    <script>
+        // El padre de todos los bucles: WHILE
+        // Es una una instrucción que contiene 
+        // otra instrucción que se repite mientras que la condición sea true,
+        // es decir, hasta que la condición sea false
+        // lo que pasa es que cualquier instrución en JS 
+        // se puede sustituir por un bloque
+
+        // while (condicion) instruccion;
+        var hayQueContinuar = true;
+        while (hayQueContinuar) 
+            hayQueContinuar = prompt("¿Continuar?", "no") === "si";
+
+        // Cambiamos la condición por una operación booleana
+        // Y cambiamnos la instrucción por un bloque
+        // Ejemplo, vamos a mostrar 5 números:
+        var contador = 1;
+        while (contador <= 5) {                    
+            document.write("<br>Num " + contador);    
+            contador = contador + 1;
+        }
+    </script>
+</body>
+</html>

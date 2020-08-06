@@ -17,7 +17,15 @@ if (respuesta === true)
 else
     alert("¡Que te las comas he dicho!");
 // respuesta = "sdfsdf"; Jamás cambies el tipo de una variable aunque se pueda
-
+// ¿Qué podemos hacer con el valor devuelto? Lo que queramos
+// Por ejemplo, guardar en variable
+var miComida = menuPersonalizado("Pan, espinacas y tortilla", 2);
+// y mostrar en el HTML
+document.write("<p>"  + miComida + "</p>");
+// Podemos usar el valor devuelto directamente en otra instrucción
+console.log("Has comido " + menuPersonalizado("Da igual", 0));
+// Podemos pasar como parámetro lo que devuelve otra función
+document.write("<p>" + menuPersonalizado("cachopo".toUpperCase(), parseInt("3")) + "</p>");
 // TIPOS DE FUNCIONES:
 
 // Funciones declaradas de la manera tradicional:
@@ -53,5 +61,16 @@ function menuDeMadre() {
         return true;
     } else {
         return false;
+    }
+}
+// Ejemplo: Función con parámetros que devuelve un valor
+// vamos a devolver un string
+function menuPersonalizado(ingredientes, cantidad) {
+    if (cantidad < 0) {
+        return "No puedes perder comida"
+    } else if (cantidad == 0) {
+        return "No hay comida"
+    } else {
+        return "La comida lleva " + cantidad + " de " + ingredientes;
     }
 }
