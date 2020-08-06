@@ -19,7 +19,7 @@
     <input type="button" onclick="operar('*')" value="Multiplicar" />
     <input type="button" onclick="operar('/')" value="Dividir" /><br />
     <input type="number" id="resultado" /><br />
-    <input type="checkbox" id="decimalesEscritos" checked disabled/> <label>Has escrito decimales</label><br />
+    <input type="checkbox" id="decimalesEscritos" checked disabled /> <label>Has escrito decimales</label><br />
 
     <input type="text" id="mensaje" /><br />
 
@@ -43,16 +43,12 @@
         function operar(operacion) {
             var infinito = 1 / 0;
 
-            var num_1;
-            var num_2;
-            num_1 = cogerNumero(inputNum1);
-            num_2 = cogerNumero(inputNum2);
-            
-           if (num_1 % 1 != 0 || num_2 % 1 != 0) {
-                document.getElementById("decimalesEscritos").checked = true;
-            } else {
-                document.getElementById("decimalesEscritos").checked = false;                
-            }
+            var num_1 = cogerNumero(inputNum1);
+            var num_2 = cogerNumero(inputNum2);
+
+            marcarSiEsDecimal(num_1, num_2);
+
+            // Ejercicio: Poner el resto de lo que hay programao, en otra función
 
             // Operador AND: F && F  -> F     F && T -> F       T && F -> F       T && T -> T
             // Operador OR:  F || F  -> F     F || T -> T       T || F -> T       T || T -> T
@@ -80,21 +76,32 @@
         }
 
         function esUnNumero(numero) {
+
             if (Number.isNaN(numero)) {
                 return false;
             } else {
                 return true;
             }
         }
-
         function cogerNumero(inputNum) {
-            
+
             if (inputConDecimales.checked) {
-                return  parseFloat(inputNum.value);
+                // return new Number(inputNum.value);                
+                return Number.parseFloat(inputNum.value);
             } else {    // Convertir a entero si no está checked
-                return  parseInt(inputNum.value);
+                return Number.parseInt(inputNum.value);
             }
         }
+        function marcarSiEsDecimal(x, y) {
+
+            // if ( !(Number.isInteger(x) || Number.isInteger(y))) {            
+            if (Number.isInteger(x) && Number.isInteger(y)) {
+                document.getElementById("decimalesEscritos").checked = false;
+            } else {
+                document.getElementById("decimalesEscritos").checked = true;
+            }
+        }
+
     </script>
 </body>
 
