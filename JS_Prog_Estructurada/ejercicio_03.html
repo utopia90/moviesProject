@@ -9,8 +9,8 @@
 
 <body>
     <h1>Operadores</h1>
-    <input type="number" id="num_1" step="0.01" /><br />
-    <input type="number" id="num_2" step="0.01" /><br />
+    <input type="number" id="inputNum1" step="0.01" /><br />
+    <input type="number" id="inputNum2" step="0.01" /><br />
     <input type="checkbox" id="conDecimal" checked /> <label>Con decimales</label><br />
 
     <!-- (**) Lo que pasamos como valor del argumento en la llamada a una función... -->
@@ -24,11 +24,11 @@
     <input type="text" id="mensaje" /><br />
 
     <script>
-        // Ambitos de variables:. Globales, local a función y local a bloque
+            // Ambitos de variables:. Globales, local a función y local a bloque
         // Globales: Existen en toda la aplicación,
         // fuera de cualquier función, deben ser pocas por limpieza de código
-        var inputNum1 = document.getElementById("num_1");
-        var inputNum2 = document.getElementById("num_2");
+        var inputNum1 = document.getElementById("inputNum1");
+        var inputNum2 = document.getElementById("inputNum2");
         var inputConDecimales = document.getElementById("conDecimal");
 
         // Declación e implementación de la función
@@ -41,40 +41,16 @@
         // Llamamos a la función
         //inicializar();
         function operar(operacion) {
-            var infinito = 1 / 0;
 
             var num_1 = cogerNumero(inputNum1);
             var num_2 = cogerNumero(inputNum2);
 
             marcarSiEsDecimal(num_1, num_2);
 
-            // Ejercicio: Poner el resto de lo que hay programao, en otra función
-
-            // Operador AND: F && F  -> F     F && T -> F       T && F -> F       T && T -> T
-            // Operador OR:  F || F  -> F     F || T -> T       T || F -> T       T || T -> T
-            // Operador NOT:  ! F  ->  T    !T -> F
-
-            if (esUnNumero(num_1) && isNaN(num_2) === false) {
-                if (operacion === "+") {
-                    document.getElementById("resultado").value = num_1 + num_2;
-                }
-                else if (operacion === "-") {
-                    document.getElementById("resultado").value = num_1 - num_2;
-                }
-                else if (operacion === "*") {
-                    document.getElementById("resultado").value = num_1 * num_2;
-                }
-                else if (operacion === "/") {
-                    document.getElementById("resultado").value = num_1 / num_2;
-                }
-                inicializar();
-            }
-            else {
-                document.getElementById("mensaje").value = "Uno de los números no es correcto";
-            }
-            document.getElementById("resultado").readOnly = true;
+            // Ejercicio: Poner el resto de lo que hay programao en la función operar(), 
+            // es decir, la condición siguiente en otra función
+            realizarOperacion(num_1, num_2, operacion);                  
         }
-
         function esUnNumero(numero) {
 
             if (Number.isNaN(numero)) {
@@ -102,6 +78,32 @@
             }
         }
 
+        function realizarOperacion(n1, n2, op) {
+            // Operador AND: F && F  -> F     F && T -> F       T && F -> F       T && T -> T
+            // Operador OR:  F || F  -> F     F || T -> T       T || F -> T       T || T -> T
+            // Operador NOT:  ! F  ->  T    !T -> F
+            // La función esUnNumero() hace lo contrario a isNaN(): 
+            //  if (isNaN(n1) === false && isNaN(n2) === false) {     
+            if (esUnNumero(n1) && esUnNumero(n2)) {   // Hace lo mismo que el comentario
+                if (op === "+") {
+                    document.getElementById("resultado").value = n1 + n2;
+                }
+                else if (op === "-") {
+                    document.getElementById("resultado").value = n1 - n2;
+                }
+                else if (op === "*") {
+                    document.getElementById("resultado").value = n1 * n2;
+                }
+                else if (op === "/") {
+                    document.getElementById("resultado").value = n1 / n2;
+                }
+                inicializar();
+            }
+            else {
+                document.getElementById("mensaje").value = "Uno de los números no es correcto";
+            }
+            document.getElementById("resultado").readOnly = true;
+        }
     </script>
 </body>
 
