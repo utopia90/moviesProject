@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web de gestión de alfombras</title>
 </head>
 <body>
-    <h1>Web de gestión de alfombras</h1>
+    <h1>Ejercicio gestión de alfombras</h1>
     <!--
         Ejercicio: Esta web está incompleta, quién la desarrolló dejó todo a medias. 
         Se trata de terminarla, sustituir lo que el que la empezó hizo mal,
@@ -32,7 +32,7 @@
     <input id="button_add" type="button" value="Añadir"/>
     <input id="button_clean" type="button" value="Borrar todo"/>
     <h2>Listado de alfombras:</h2>
-    <br><label>Total de alfomras:</label><input id="input_total" type="text" value="2 alfombras"/>
+    <br><label>Total de alfomras:</label><button id="input_total" type="text"/>2 alfombras</button>
     
     <table>
         <thead>
@@ -60,7 +60,8 @@
         function inicializar() {
             paises  = new Array()
             paises[0] = "Portugal";
-            paises[1] = "Uruguay";
+            paises.push("Uruguay");
+
             precios = [100, 80];
             tbodyAlfombras = document.getElementById("tbody_alfombras");
             inputPais = document.getElementById("input_pais");
@@ -73,8 +74,8 @@
             tbodyAlfombras.innerHTML = "";
 
             var htmlTR = "<tr>";
-            // += incrementa la misma variable o propiedad
-            htmlTR += "<td> " + paises[0] + " </td>";
+            // += incrementa la misma variable o propiedad`
+            htmlTR = htmlTR + "<td> " + paises[0] + " </td>";
             htmlTR += "<td> " + precios[0] + " € </td></tr>";
 
             tbodyAlfombras.innerHTML += htmlTR;
