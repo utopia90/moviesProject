@@ -72,24 +72,26 @@
         }    
         function pintarTabla() {
             tbodyAlfombras.innerHTML = "";
+            {
+                
+                let htmlTR = "<tr>";
+                // += incrementa la misma variable o propiedad`
+                htmlTR = htmlTR + "<td> " + paises[0] + " </td>";
+                htmlTR += "<td> " + precios[0] + " € </td></tr>";
 
-            var htmlTR = "<tr>";
-            // += incrementa la misma variable o propiedad`
-            htmlTR = htmlTR + "<td> " + paises[0] + " </td>";
-            htmlTR += "<td> " + precios[0] + " € </td></tr>";
+                tbodyAlfombras.innerHTML += htmlTR;
 
-            tbodyAlfombras.innerHTML += htmlTR;
+                // ¿Qué hacemos con código que se repite?
+                htmlTR = "<tr>";
+                htmlTR += "<td> " + paises[1] + " </td>";
+                htmlTR += "<td> " + precios[1] + " € </td></tr>";
+                tbodyAlfombras.innerHTML += htmlTR;
 
-            // ¿Qué hacemos con código que se repite?
-            htmlTR = "<tr>";
-            htmlTR += "<td> " + paises[1] + " </td>";
-            htmlTR += "<td> " + precios[1] + " € </td></tr>";
-            tbodyAlfombras.innerHTML += htmlTR;
-
-            htmlTR = "<tr>";
-            htmlTR += "<td> " + paises[2] + " </td>";
-            htmlTR += "<td> " + precios[2] + " € </td></tr>";
-            tbodyAlfombras.innerHTML += htmlTR;
+                htmlTR = "<tr>";
+                htmlTR += "<td> " + paises[2] + " </td>";
+                htmlTR += "<td> " + precios[2] + " € </td></tr>";
+                tbodyAlfombras.innerHTML += htmlTR;
+            }
         }
         function addAlfombra() {
             paises[paises.length] = inputPais.value;

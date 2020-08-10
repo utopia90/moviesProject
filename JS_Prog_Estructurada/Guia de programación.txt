@@ -4,13 +4,13 @@ Pasos de programación:
 3 - Si no se ocurre, buscar un tutorial (texto, video...) que lo resuelva
 	3.1 - Si se nos ocurre en los siguientes puntos, pasar al 8).
 4 - Si no se ocurre, buscar ejemplos similares
-5 - Si tampoco, buscar/releer documentación (de programación C# y/o de Unity3D)
+5 - Si tampoco, buscar/releer documentación (de programación JavaScript, o el lenguaje)
 6 - Una vez averiguada una posible solución, implementarla (programarla)
 7 - Si tampoco, probar código medio aleatorio basandonos en lo que sabemos ó
 8 - Programar parte de la solución 
-7 - Corregir errores de sintaxis (de compilación)
-8 - Ejecutar y corregir errores en tiempo de ejecución (depurando) (Excepciones)
-9 - Comprobar los errores lógicos (Pruebas unitarias, depurando). Si los hubiera, volver al punto 2
-10 - Pedir ayuda (Conocidos, profe, Stack Overflow u otras comunidades).
-11 - Cerciorarse de que funciona como esperamos.
-12 - Comprobar que el resto del programa no se ha estropeado (Pruebas de integración)
+9 - Corregir errores de sintaxis (de compilación)
+10 Ejecutar y corregir errores en tiempo de ejecución (depurando) (Excepciones)
+11 - Comprobar los errores lógicos (Pruebas unitarias, depurando). Si los hubiera, volver al punto 2
+12 - Pedir ayuda (Conocidos, profe, Stack Overflow u otras comunidades).
+13 - Cerciorarse de que funciona como esperamos.
+14 - Comprobar que el resto del programa no se ha estropeado (Pruebas de integración)
