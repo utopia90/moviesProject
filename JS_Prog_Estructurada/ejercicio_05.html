@@ -51,51 +51,77 @@
         </tbody>
     </table>
     <script>
-        var tbodyAlfombras, inputPais, buttonAdd;
-        var paises, precios;
+        var tbodyAlfombras, inputPais, inputPrecio, inputStock, buttonAdd, buttonClean;
+        var paises, precios, stocks;
 
         inicializar();
         pintarTabla();
  
         function inicializar() {
-            paises  = new Array()
+            paises  = new Array();
             paises[0] = "Portugal";
             paises.push("Uruguay");
-
             precios = [100, 80];
+            stocks = [true, false];
             tbodyAlfombras = document.getElementById("tbody_alfombras");
-            inputPais = document.getElementById("input_pais");
             buttonAdd = document.getElementById("button_add");
+
+            inputPais = document.getElementById("input_pais");
+            inputPrecio = document.getElementById("input_precio");
+            inputStock = document.getElementById("input_stock");
+            buttonClean = document.getElementById("button_clean");
+
             // Vinculamos el evento onclick a la función addAlfombra,
             // como si fuera el atributo HTML onclick="addAlfombra();"
             buttonAdd.onclick = addAlfombra;
+            buttonClean.onclick = function() {
+                limpiarDatos() ;
+                alert("Se han limpiado los datos");
+            } 
         }    
         function pintarTabla() {
             tbodyAlfombras.innerHTML = "";
-            {
                 
-                let htmlTR = "<tr>";
+            let htmlTR, i;
+            //i = 0;    //Esto es lo mismo que el for()
+            // while (i < paises.length) {                
+            for (i = 0; i < paises.length; i++)
+            {
+                htmlTR = "<tr>";
+                htmlTR = htmlTR + "<td> " + paises[i] + " </td>";
                 // += incrementa la misma variable o propiedad`
-                htmlTR = htmlTR + "<td> " + paises[0] + " </td>";
-                htmlTR += "<td> " + precios[0] + " € </td></tr>";
-
-                tbodyAlfombras.innerHTML += htmlTR;
-
-                // ¿Qué hacemos con código que se repite?
-                htmlTR = "<tr>";
-                htmlTR += "<td> " + paises[1] + " </td>";
-                htmlTR += "<td> " + precios[1] + " € </td></tr>";
-                tbodyAlfombras.innerHTML += htmlTR;
-
-                htmlTR = "<tr>";
-                htmlTR += "<td> " + paises[2] + " </td>";
-                htmlTR += "<td> " + precios[2] + " € </td></tr>";
-                tbodyAlfombras.innerHTML += htmlTR;
-            }
+                htmlTR += "<td> " + precios[i] + " € </td>";
+                htmlTR += "<td> " + (stocks[i] ? "SI" : "NO") + "</td></tr>";
+                //htmlTR += tieneStock(stocks[i]) + "</tr>";
+                 
+                tbodyAlfombras.innerHTML = tbodyAlfombras.innerHTML + htmlTR;
+            }            
         }
+        /*function tieneStock(stock) {
+            var columnaStock; 
+            if (stock) {
+                columnaStock = "<td> SI </td>";
+            }
+            else {
+                columnaStock = "<td> NO </td>";
+            }
+            return columnaStock;
+        }*/
         function addAlfombra() {
             paises[paises.length] = inputPais.value;
+            precios.push(inputPrecio.value);
+            stocks.push(inputStock.checked);
             pintarTabla() ;
+        }
+        function limpiarDatos() {
+            paises.splice(0, paises.length);
+            precios.splice(0, precios.length);
+            stocks.splice(0, stocks.length);
+            inputPais.value = "";
+            inputPrecio.value = "";
+            inputStock.checked = false;
+
+            pintarTabla();
         }
     </script>
 </body>

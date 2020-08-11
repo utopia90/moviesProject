@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Un objeto es una instancia, una estructura de datos que almacena
+        // propiedades, donde las propiedades pueden ser cualquier tipo de JS
+        // (núme, bool, texto, arrays, null, undefined, objetos, función (métodos))
+        let obj_1 = new Object();   // Con "new" SIEMPRE creamos un objeto
+        let fecha = new Date(); // Obj predefinido de JS que guarda una fecha
+        // Formas de añadir propiedades: con . ó con [""]
+        let usuario = new Object();
+        usuario.nombre = "Fulanito";
+        usuario.edad = 37;
+        usuario.fechaNacimiento = new Date(1982, 10, 7);
+        usuario.trabajo = null;
+        usuario.aficiones = ["Sofaning", "Series", "Futbol"];
+//        usuario.mostrarDatos = new Function("docume....")
+        usuario.mostrarDatos = function () {
+            document.write("<p>mostrado desde método</p>");
+            document.write("<p>Nombre: " + this.nombre + "</p>");
+            document.write("<p>Año nacim" 
+                + this.fechaNacimiento.getFullYear() + "</p>");
+        }
+        let usuaria = new Object();
+        usuaria.nombre = "Menganita";
+        usuaria.mostrarDatos = usuario.mostrarDatos;
+        usuario.mostrarDatos();
+        usuaria.mostrarDatos();
+    </script>
+</body>
+</html>
