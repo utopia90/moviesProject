@@ -8,103 +8,25 @@
 </head>
 
 <body>
-    <h1>Operadores</h1>
-    <input type="number" id="inputNum1" step="0.01" /><br />
-    <input type="number" id="inputNum2" step="0.01" /><br />
-    <input type="checkbox" id="conDecimal" checked /> <label>Con decimales</label><br />
+    <script>       
+          function calculate(num) { 
+              var negatives = 0; 
+              var positives = 0;
+               var multiples = 0;
+                var pares = 0; 
+                for (let i = 0; i <= num.length; i++) {
+                     if (num[i] > 0) { positives++; } 
+                     if (num[i] % 15 == 0) { multiples++; } 
+                     if (num[i] % 2 == 0) { pares += num[i]; }
+                      if (num[i] < 0) { negatives++; } 
+                    } 
+                document.write("negativos = " + negatives + "<br>", 
+                "positivos = " + positives + "<br>", 
+                "multiplos de 15 = " + multiples + "<br>", "pares valor acumulado= " + pares); } 
 
-    <!-- (**) Lo que pasamos como valor del argumento en la llamada a una función... -->
-    <input type="button" onclick="operar('+')" value="Suma" />
-    <input type="button" onclick="operar('-')" value="Resta" /><br />
-    <input type="button" onclick="operar('*')" value="Multiplicar" />
-    <input type="button" onclick="operar('/')" value="Dividir" /><br />
-    <input type="number" id="resultado" /><br />
-    <input type="checkbox" id="decimalesEscritos" checked disabled /> <label>Has escrito decimales</label><br />
-
-    <input type="text" id="mensaje" /><br />
-
-    <script>
-            // Ambitos de variables:. Globales, local a función y local a bloque
-        // Globales: Existen en toda la aplicación,
-        // fuera de cualquier función, deben ser pocas por limpieza de código
-        var inputNum1 = document.getElementById("inputNum1");
-        var inputNum2 = document.getElementById("inputNum2");
-        var inputConDecimales = document.getElementById("conDecimal");
-
-        // Declación e implementación de la función
-        function inicializar() {
-            inputNum1.value = "0";
-            inputNum2.value = "0";
-        };
-        inicializar();
-
-        // Llamamos a la función
-        //inicializar();
-        function operar(operacion) {
-
-            var num_1 = cogerNumero(inputNum1);
-            var num_2 = cogerNumero(inputNum2);
-
-            marcarSiEsDecimal(num_1, num_2);
-
-            // Ejercicio: Poner el resto de lo que hay programao en la función operar(), 
-            // es decir, la condición siguiente en otra función
-            realizarOperacion(num_1, num_2, operacion);                  
-        }
-        function esUnNumero(numero) {
-
-            if (Number.isNaN(numero)) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-        function cogerNumero(inputNum) {
-
-            if (inputConDecimales.checked) {
-                // return new Number(inputNum.value);                
-                return Number.parseFloat(inputNum.value);
-            } else {    // Convertir a entero si no está checked
-                return Number.parseInt(inputNum.value);
-            }
-        }
-        function marcarSiEsDecimal(x, y) {
-
-            // if ( !(Number.isInteger(x) || Number.isInteger(y))) {            
-            if (Number.isInteger(x) && Number.isInteger(y)) {
-                document.getElementById("decimalesEscritos").checked = false;
-            } else {
-                document.getElementById("decimalesEscritos").checked = true;
-            }
-        }
-
-        function realizarOperacion(n1, n2, op) {
-            // Operador AND: F && F  -> F     F && T -> F       T && F -> F       T && T -> T
-            // Operador OR:  F || F  -> F     F || T -> T       T || F -> T       T || T -> T
-            // Operador NOT:  ! F  ->  T    !T -> F
-            // La función esUnNumero() hace lo contrario a isNaN(): 
-            //  if (isNaN(n1) === false && isNaN(n2) === false) {     
-            if (esUnNumero(n1) && esUnNumero(n2)) {   // Hace lo mismo que el comentario
-                if (op === "+") {
-                    document.getElementById("resultado").value = n1 + n2;
-                }
-                else if (op === "-") {
-                    document.getElementById("resultado").value = n1 - n2;
-                }
-                else if (op === "*") {
-                    document.getElementById("resultado").value = n1 * n2;
-                }
-                else if (op === "/") {
-                    document.getElementById("resultado").value = n1 / n2;
-                }
-                inicializar();
-            }
-            else {
-                document.getElementById("mensaje").value = "Uno de los números no es correcto";
-            }
-            document.getElementById("resultado").readOnly = true;
-        }
-    </script>
+            calculate([-2, 3, 15, 2, 4, -3, 4, 5, 30, 6]);   
+                
+                </script>
 </body>
 
 </html>

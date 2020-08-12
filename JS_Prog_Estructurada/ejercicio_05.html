@@ -59,6 +59,7 @@
     <script>
         var tbodyAlfombras, inputPais, inputPrecio, inputStock, inputTotal, buttonAdd, buttonClean, inputTotalPrecios;
         var paises, precios, stocks;
+        var lado1 = prompt("Lado 1");
 
         window.addEventListener("load", inicializar);
 
@@ -146,6 +147,7 @@
             return columnaStock;
         }*/
         function addAlfombra() {
+
             if (validarDatos()) 
             {
                 paises[paises.length] = inputPais.value;
@@ -155,6 +157,8 @@
                 // Hola, queremos llamar a lafunción ¿Cómo llamamos a la función?
                 contarAlfombras();
                 sumarTotalPrecios();
+
+                inputPrecio.value = Math.round(100 + Math.random() * 200);
             } 
         }
         function validarDatos() {
