@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web de gestión de alfombras</title>
 </head>
+
 <body>
     <h1>Ejercicio gestión de alfombras</h1>
     <!--
@@ -25,18 +27,19 @@
             cuyo id="input_total"
         - Añadir otro botón que calcule el total de la suma de los precios
         -->
-    <br><label>Pais:</label><input id="input_pais" type="text" placeholder="Pais de origen"/>
-    <br><label>Precio:</label><input id="input_precio" type="number" placeholder="Precio"/>
-    <br><label>En stock:</label><input id="input_stock" type="checkbox"/>
+    <br><label>Pais:</label><input id="input_pais" type="text" placeholder="Pais de origen" minlength="2" />
+    <br><label>Precio:</label><input id="input_precio" type="number" placeholder="Precio" />
+    <br><label>En stock:</label><input id="input_stock" type="checkbox" />
+    <p id="mensaje"></p>
     <br>
-    <input id="button_add" type="button" value="Añadir"/>
-    <input id="button_clean" type="button" value="Borrar todo"/>
-    <input id="button_count" type="button" value="Contar todo"/>
+    <input id="button_add" type="button" value="Añadir" />
+    <input id="button_clean" type="button" value="Borrar todo" />
+    <input id="button_count" type="button" value="Contar todo" />
     <h2>Listado de alfombras:</h2>
     <br><label>Total de alfomras:</label>
-    <input id="input_total" type="text" value="0 alfombras" readonly/>
-    <input id="input_total_precios" type="text" value="0 €" readonly/>
-    <input onclick="inicializar()" type="button" value="RESET"/>
+    <input id="input_total" type="text" value="0 alfombras" readonly />
+    <input id="input_total_precios" type="text" value="0 €" readonly />
+    <input onclick="inicializar()" type="button" value="RESET" />
     <table>
         <thead>
             <tr>
@@ -47,25 +50,25 @@
         </thead>
         <tbody id="tbody_alfombras">
             <tr>
-              <td> Portugal </td>
-              <td> 100 € </td>
-              <td> SI </td>
+                <td> Portugal </td>
+                <td> 100 € </td>
+                <td> SI </td>
             </tr>
         </tbody>
     </table>
     <script>
         var tbodyAlfombras, inputPais, inputPrecio, inputStock, inputTotal, buttonAdd, buttonClean, inputTotalPrecios;
         var paises, precios, stocks;
-        
+
         window.addEventListener("load", inicializar);
 
         function inicializar() {
-            paises  = new Array();
+            paises = new Array();
             paises[0] = "Portugal";
             paises.push("Uruguay");
             paises.push("Turquía");
             paises.push("España");
-            precios = [100, 80, 200,500];
+            precios = [100, 80, 200, 500];
             stocks = [true, false, false, true];
             tbodyAlfombras = document.getElementById("tbody_alfombras");
             buttonAdd = document.getElementById("button_add");
@@ -80,42 +83,41 @@
             // Vinculamos el evento onclick a la función addAlfombra,
             // como si fuera el atributo HTML onclick="addAlfombra();"
             buttonAdd.onclick = addAlfombra;
-            buttonClean.onclick = function() {
-                limpiarDatos() ;
+            buttonClean.onclick = function () {
+                limpiarDatos();
                 alert("Se han limpiado los datos");
-            } 
+            }
             document.getElementById("button_count").addEventListener("click", contarAlfombras);
 
             contarAlfombras();
             pintarTabla();
             sumarTotalPrecios();
-        }    
+        }
 
 
         function pintarTabla() {
             tbodyAlfombras.innerHTML = "";
-                
+
             let htmlTR, i;
             //i = 0;    //Esto es lo mismo que el for()
             // while (i < paises.length) {                
-            for (i = 0; i < paises.length; i++)
-            {
+            for (i = 0; i < paises.length; i++) {
                 htmlTR = "<tr>";
                 htmlTR = htmlTR + "<td> " + paises[i] + " </td>";
                 // += incrementa la misma variable o propiedad`
                 htmlTR += "<td> " + precios[i] + " € </td>";
                 htmlTR += "<td> " + (stocks[i] ? "SI" : "NO") + "</td></tr>";
                 //htmlTR += tieneStock(stocks[i]) + "</tr>";
-                 
+
                 tbodyAlfombras.innerHTML = tbodyAlfombras.innerHTML + htmlTR;
-            }            
+            }
         }
         function sumarTotalPrecios() {
             let totalPrecios = 0;
             /* Forma for tradicional: */
-             for (let i = 0; i < precios.length; i++) {
+            for (let i = 0; i < precios.length; i++) {
                 totalPrecios += precios[i];
-            } 
+            }
             // Con for each:
             function sumarUnElemento(precio) {
                 totalPrecios += precio;
@@ -124,14 +126,14 @@
             // Con nuestro propio foreach
             miPropioForEach(precios, sumarUnElemento);
 
-            totalPrecios = precios.reduce((totalActual, precio) =>  totalActual + precio, 0 );
+            totalPrecios = precios.reduce((totalActual, precio) => totalActual + precio, 0);
             inputTotalPrecios.value = totalPrecios + " €";
         }
 
         function miPropioForEach(array, unaFuncion) {
             for (let i = 0; i < array.length; i++) {
                 unaFuncion(array[i]);
-            } 
+            }
         }
         /*function tieneStock(stock) {
             var columnaStock; 
@@ -144,13 +146,25 @@
             return columnaStock;
         }*/
         function addAlfombra() {
-            paises[paises.length] = inputPais.value;
-            precios.push( parseFloat(inputPrecio.value));
-            stocks.push(inputStock.checked);
-            pintarTabla() ;
-            // Hola, queremos llamar a lafunción ¿Cómo llamamos a la función?
-            contarAlfombras();
-            sumarTotalPrecios();
+            if (validarDatos()) 
+            {
+                paises[paises.length] = inputPais.value;
+                precios.push(parseFloat(inputPrecio.value));
+                stocks.push(inputStock.checked);
+                pintarTabla();
+                // Hola, queremos llamar a lafunción ¿Cómo llamamos a la función?
+                contarAlfombras();
+                sumarTotalPrecios();
+            } 
+        }
+        function validarDatos() {
+            if (inputPais.value != null && inputPais.value != "" && inputPais.value.length > 1) {
+                document.getElementById("mensaje").innerHTML = "";
+                return true;
+            } else {
+                document.getElementById("mensaje").innerHTML = "Mete un país, so vago";
+                return false;
+            }
         }
         function limpiarDatos() {
             paises.splice(0, paises.length);
@@ -167,6 +181,12 @@
         function contarAlfombras() {
             inputTotal.value = paises.length + " alfombras";
         }
+        // Validación: Antes de añadir una alfombra
+        // 1 - Pais tiene que tener al menos 2 letras
+        // 2 - Precio debe ser un número de verdad
+        // 3 - Precio debe ser positivo
+        // 4 - Indicar bien cual es el error mediante el HTML
     </script>
 </body>
+
 </html>
