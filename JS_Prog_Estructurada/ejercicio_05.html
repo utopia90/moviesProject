@@ -31,8 +31,10 @@
     <br>
     <input id="button_add" type="button" value="Añadir"/>
     <input id="button_clean" type="button" value="Borrar todo"/>
+    <input id="button_count" type="button" value="Contar todo"/>
     <h2>Listado de alfombras:</h2>
-    <br><label>Total de alfomras:</label><button id="input_total" type="text"/>2 alfombras</button>
+    <br><label>Total de alfomras:</label>
+    <input id="input_total" type="text" value="2 alfombras" readonly/>
     
     <table>
         <thead>
@@ -51,24 +53,28 @@
         </tbody>
     </table>
     <script>
-        var tbodyAlfombras, inputPais, inputPrecio, inputStock, buttonAdd, buttonClean;
+        var tbodyAlfombras, inputPais, inputPrecio, inputStock, inputTotal, buttonAdd, buttonClean;
         var paises, precios, stocks;
 
         inicializar();
         pintarTabla();
+        contarAlfombras();
  
         function inicializar() {
             paises  = new Array();
             paises[0] = "Portugal";
             paises.push("Uruguay");
-            precios = [100, 80];
-            stocks = [true, false];
+            paises.push("Turquía");
+            paises.push("España");
+            precios = [100, 80, 200,500];
+            stocks = [true, false, false, true];
             tbodyAlfombras = document.getElementById("tbody_alfombras");
             buttonAdd = document.getElementById("button_add");
 
             inputPais = document.getElementById("input_pais");
             inputPrecio = document.getElementById("input_precio");
             inputStock = document.getElementById("input_stock");
+            inputTotal = document.getElementById("input_total");
             buttonClean = document.getElementById("button_clean");
 
             // Vinculamos el evento onclick a la función addAlfombra,
@@ -78,6 +84,7 @@
                 limpiarDatos() ;
                 alert("Se han limpiado los datos");
             } 
+            document.getElementById("button_count").addEventListener("click", contarAlfombras);
         }    
         function pintarTabla() {
             tbodyAlfombras.innerHTML = "";
@@ -112,6 +119,8 @@
             precios.push(inputPrecio.value);
             stocks.push(inputStock.checked);
             pintarTabla() ;
+            // Hola, queremos llamar a lafunción ¿Cómo llamamos a la función?
+            contarAlfombras();
         }
         function limpiarDatos() {
             paises.splice(0, paises.length);
@@ -122,6 +131,9 @@
             inputStock.checked = false;
 
             pintarTabla();
+        }
+        function contarAlfombras() {
+            inputTotal.value = paises.length + " alfombras";
         }
     </script>
 </body>
