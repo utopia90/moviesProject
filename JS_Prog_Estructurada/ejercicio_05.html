@@ -34,8 +34,9 @@
     <input id="button_count" type="button" value="Contar todo"/>
     <h2>Listado de alfombras:</h2>
     <br><label>Total de alfomras:</label>
-    <input id="input_total" type="text" value="2 alfombras" readonly/>
-    
+    <input id="input_total" type="text" value="0 alfombras" readonly/>
+    <input id="input_total_precios" type="text" value="0 €" readonly/>
+    <input onclick="inicializar()" type="button" value="RESET"/>
     <table>
         <thead>
             <tr>
@@ -53,13 +54,11 @@
         </tbody>
     </table>
     <script>
-        var tbodyAlfombras, inputPais, inputPrecio, inputStock, inputTotal, buttonAdd, buttonClean;
+        var tbodyAlfombras, inputPais, inputPrecio, inputStock, inputTotal, buttonAdd, buttonClean, inputTotalPrecios;
         var paises, precios, stocks;
+        
+        window.addEventListener("load", inicializar);
 
-        inicializar();
-        pintarTabla();
-        contarAlfombras();
- 
         function inicializar() {
             paises  = new Array();
             paises[0] = "Portugal";
@@ -75,6 +74,7 @@
             inputPrecio = document.getElementById("input_precio");
             inputStock = document.getElementById("input_stock");
             inputTotal = document.getElementById("input_total");
+            inputTotalPrecios = document.getElementById("input_total_precios");
             buttonClean = document.getElementById("button_clean");
 
             // Vinculamos el evento onclick a la función addAlfombra,
@@ -85,7 +85,13 @@
                 alert("Se han limpiado los datos");
             } 
             document.getElementById("button_count").addEventListener("click", contarAlfombras);
+
+            contarAlfombras();
+            pintarTabla();
+            sumarTotalPrecios();
         }    
+
+
         function pintarTabla() {
             tbodyAlfombras.innerHTML = "";
                 
@@ -104,6 +110,29 @@
                 tbodyAlfombras.innerHTML = tbodyAlfombras.innerHTML + htmlTR;
             }            
         }
+        function sumarTotalPrecios() {
+            let totalPrecios = 0;
+            /* Forma for tradicional: */
+             for (let i = 0; i < precios.length; i++) {
+                totalPrecios += precios[i];
+            } 
+            // Con for each:
+            function sumarUnElemento(precio) {
+                totalPrecios += precio;
+            }
+            precios.forEach(sumarUnElemento);
+            // Con nuestro propio foreach
+            miPropioForEach(precios, sumarUnElemento);
+
+            totalPrecios = precios.reduce((totalActual, precio) =>  totalActual + precio, 0 );
+            inputTotalPrecios.value = totalPrecios + " €";
+        }
+
+        function miPropioForEach(array, unaFuncion) {
+            for (let i = 0; i < array.length; i++) {
+                unaFuncion(array[i]);
+            } 
+        }
         /*function tieneStock(stock) {
             var columnaStock; 
             if (stock) {
@@ -116,11 +145,12 @@
         }*/
         function addAlfombra() {
             paises[paises.length] = inputPais.value;
-            precios.push(inputPrecio.value);
+            precios.push( parseFloat(inputPrecio.value));
             stocks.push(inputStock.checked);
             pintarTabla() ;
             // Hola, queremos llamar a lafunción ¿Cómo llamamos a la función?
             contarAlfombras();
+            sumarTotalPrecios();
         }
         function limpiarDatos() {
             paises.splice(0, paises.length);
@@ -131,6 +161,8 @@
             inputStock.checked = false;
 
             pintarTabla();
+            contarAlfombras();
+            sumarTotalPrecios();
         }
         function contarAlfombras() {
             inputTotal.value = paises.length + " alfombras";
