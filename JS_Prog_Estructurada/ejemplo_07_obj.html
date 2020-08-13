@@ -31,18 +31,23 @@
         usuario.mostrarDatos = function () {
             document.write("<p>mostrado desde método</p>");
             document.write("<p>Nombre: " + this.nombre + "</p>");
-            document.write("<p>Año nacim" 
+            if (typeof(this.fechaNacimiento) !== "undefined")
+            {
+                 document.write("<p>Año nacim" 
                 + this.fechaNacimiento.getFullYear() + "</p>");
+            }
         }
-        let usuaria = new Object();
+        let usuaria = { };
         usuaria.nombre = "Menganita";
+        // usuaria.fechaNacimiento = new Date(10, 10, 1980);
         usuaria.mostrarDatos = usuario.mostrarDatos;
+
         usuario.mostrarDatos();
-        // usuaria.mostrarDatos();
+        usuaria.mostrarDatos();
 
         // EN JavaScript, formato ó estilo JSON que entiende casi cualquier lenguaje
         let otroUsuario = {
-            "nombre": "Menganito",
+            "nombre": "Otro usuario (Menganito)",
             "edad": 23,
             "fechaNacimiento": new Date(1996, 10, 7),
             "trabajo" : null,
@@ -54,13 +59,14 @@
             }
         }
         otroUsuario.direccion = "Calle La plana, 5";
-        otroUsuario.mostrarDatos();
+        document.write("otrro Usuario: ");
+        otroUsuario["mostrarDatos"]();
 
         // EN JS, también se puede acceder a las propiedades como si fuera un Map (diccionario):
         
         document.write("<p>Edad: " + otroUsuario.edad + "</p>");
         document.write("<p>Edad: " + otroUsuario["edad"] + "</p>");
-        otroUsuario["sexo"] = "duro";
+        otroUsuario["sexo"] = "hombre";
 
         var variablePropiedad = prompt("¿Que quieres mostrar?")
         document.write("<p>Propiedad: " + otroUsuario[variablePropiedad] + "</p>");
