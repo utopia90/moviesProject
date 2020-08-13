@@ -1,0 +1,35 @@
+Funcionamiento web:
+
+Tradicional: PHP, JSP, ASP
+Usuario -> Navegador -> url -> Generar petición HTTP GET
+                     -> Botón submit/FORM -> Generar petición HTTP GET ó POST, con parámetros url.php?par1=343
+            VIAJE POR INTERNET  -> AL SERVIDOR
+
+    El servidor ejecuta el PHP  -> Guardará y/o leerá datos de la BBDD 
+    -> A través de un driver -> Procesa los datos (funciones, bucles...)
+    Genera un nuevo HTML -> Devuelve al Navegador (respuesta HTTP)
+Navegador convierte el HTML en una estructura D.O.M. (document Object Model, objetos de JS) y además, interpreta el JS.
+(*) Problemas: El Navegador pide mucho código HTML constantemen: 
+
+Moderna: SPA (Single Page Aplication)
+
+Usuario -> Navegador -> url -> Generar petición HTTP GET
+
+El servidor devuelve un HTML (uno) con mucho JS: Pordría ser toda la Aplication front.
+Cada vez que necesite datos, o enviarlos -> Genera una petición HTTP (GET, POST, PUT, DELETE...) o bien con AJAX o bien con fetch( )
+Normalmente: Se conectará a una A.P.I.
+     (Aplication Programming Interface: Forma, mensajes, métodos, parámetros... para que dos programas se comuniquen)
+     En esa petición, se enviarán los datos, ¿Cómo? O bien con XML, o más bien con JSON (JavaScript Object Notation)
+
+            VIAJE POR INTERNET DEL JSON -> AL SERVIDOR
+        
+    El servidor recibo la info a través de su API: Programada y ejecuta el PHP, NodeJS, Java, Python  
+    -> Guardará y/o leerá datos de la BBDD -> A través de un driver -> Procesa los datos (funciones, bucles...)
+    Genera una respuesta HTTP (JSON, XML, un fichero, una imagen...) -> Devuelve al Navegador (respuesta HTTP)
+
+            VIAJE POR INTERNET DEL JSON... -> AL SERVIDOR
+    Navegador, en nuestro JS, convierte el JSON en una estructura objeto de JS, y además, interpreta el JS.
+
+
+
+

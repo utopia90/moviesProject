@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let cantidadTriangulos = 0;
+        for (var i = 0; i < 3; i = i + 1) {
+            let base = parseFloat(prompt("base: "));
+            let alt =parseFloat( prompt("altura: "));
+            let area = superficie(base, alt);
+            document.write("<p>" + base  + " x " 
+                + alt + " superf: " + area);
+            if (area > 12) {
+                cantidadTriangulos = cantidadTriangulos + 1;
+            }
+        }
+        document.write("<p>T: " + cantidadTriangulos + "</p>") ;
+        function superficie(b, a) {
+            return b * a / 2;
+        }
+    </script>
+</body>
+</html>

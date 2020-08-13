@@ -1,0 +1,34 @@
+{
+    "username": "German",
+    "password": "No te la digo 1234"
+}
+
+
+{
+	"songs": [{
+			"title": "Wash-Your-Hands-Song",
+			"url":"https://toys-and-colors-songs.s3-us-west-1.amazonaws.com/vip/Wash-Your-Hands-Song.mp3",
+			"type": "vip"
+		},
+		{
+			"title": "Vegetables-Song",
+			"url":"https://toys-and-colors-songs.s3-us-west-1.amazonaws.com/free/Vegetables-Song.mp3",
+			"type": "free"
+		},
+		{
+			"title": "Recycle-Song",
+			"url":"https://toys-and-colors-songs.s3-us-west-1.amazonaws.com/free/Recycle-Song.mp3",
+			"type": "free"
+		},
+		{
+			"title": "Princess-Song",
+			"url":"https://toys-and-colors-songs.s3-us-west-1.amazonaws.com/free/Princess-Song.mp3",
+			"type": "free"
+		},
+		{
+			"title": "Professions-Song",
+			"url":"https://toys-and-colors-songs.s3-us-west-1.amazonaws.com/free/Professions-Song.mp3",
+			"type": "free"
+		}
+	]
+}
