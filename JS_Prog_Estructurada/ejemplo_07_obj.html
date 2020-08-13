@@ -11,6 +11,9 @@
         // Un objeto es una instancia, una estructura de datos que almacena
         // propiedades, donde las propiedades pueden ser cualquier tipo de JS
         // (núme, bool, texto, arrays, null, undefined, objetos, función (métodos))
+        
+        // Manera original (con new) de crear objetos
+
         let obj_1 = new Object();   // Con "new" SIEMPRE creamos un objeto
         let fecha = new Date(); // Obj predefinido de JS que guarda una fecha
         // Formas de añadir propiedades: con . ó con [""]
@@ -19,7 +22,11 @@
         usuario.edad = 37;
         usuario.fechaNacimiento = new Date(1982, 10, 7);
         usuario.trabajo = null;
-        usuario.aficiones = ["Sofaning", "Series", "Futbol"];
+        usuario.aficiones = new Array();
+        usuario.aficiones[0] = "Sofaning";
+        usuario.aficiones[1] = "Series";
+        usuario.aficiones[2] = "Futbol";
+
 //        usuario.mostrarDatos = new Function("docume....")
         usuario.mostrarDatos = function () {
             document.write("<p>mostrado desde método</p>");
@@ -31,8 +38,33 @@
         usuaria.nombre = "Menganita";
         usuaria.mostrarDatos = usuario.mostrarDatos;
         usuario.mostrarDatos();
-        usuaria.mostrarDatos();
+        // usuaria.mostrarDatos();
 
+        // EN JavaScript, formato ó estilo JSON que entiende casi cualquier lenguaje
+        let otroUsuario = {
+            "nombre": "Menganito",
+            "edad": 23,
+            "fechaNacimiento": new Date(1996, 10, 7),
+            "trabajo" : null,
+            "aficiones": ["Baloncesto", "Boxeo", "Dibujar"],
+            "mostrarDatos": function() {
+                document.write("<p>Nombre: " + this.nombre + "</p>");
+                document.write("<p>Año nacim" 
+                    + this.fechaNacimiento.getFullYear() + "</p>");
+            }
+        }
+        otroUsuario.direccion = "Calle La plana, 5";
+        otroUsuario.mostrarDatos();
+
+        // EN JS, también se puede acceder a las propiedades como si fuera un Map (diccionario):
+        
+        document.write("<p>Edad: " + otroUsuario.edad + "</p>");
+        document.write("<p>Edad: " + otroUsuario["edad"] + "</p>");
+        otroUsuario["sexo"] = "duro";
+
+        var variablePropiedad = prompt("¿Que quieres mostrar?")
+        document.write("<p>Propiedad: " + otroUsuario[variablePropiedad] + "</p>");
+        document.write("<p>Sexo: " + otroUsuario.sexo + "</p>");
     </script>
 </body>
 </html>

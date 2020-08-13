@@ -19,7 +19,7 @@ El servidor devuelve un HTML (uno) con mucho JS: Pordría ser toda la Aplication
 Cada vez que necesite datos, o enviarlos -> Genera una petición HTTP (GET, POST, PUT, DELETE...) o bien con AJAX o bien con fetch( )
 Normalmente: Se conectará a una A.P.I.
      (Aplication Programming Interface: Forma, mensajes, métodos, parámetros... para que dos programas se comuniquen)
-     En esa petición, se enviarán los datos, ¿Cómo? O bien con XML, o más bien con JSON (JavaScript Object Notation)
+     En esa petición, se enviarán los datos, ¿Cómo? O bien con XML, o más bien con JSON (JavaScript Object Notation: ES TEXTO PLANO)
 
             VIAJE POR INTERNET DEL JSON -> AL SERVIDOR
         
