@@ -22,20 +22,52 @@ let view = {
         // EJ 3: y un input personalizado mediante parámetros (nombre campo, tipo campo...)
         // EJ 4: y usarla aquí mismo para crear los 3 inputs title, year, image
 
-        // <label>Title: </label>
-        form.appendChild(this.generateLabel("Title: "));
-        form.appendChild(this.generateLabel("Year: "));
+        // <label>Title: </label> <input id="inputTitle" type="text" placeholder="Give me a title"/>  
 
-        // <input id="inputTitle" type="text"/>
-        let input = document.createElement("input");
-        form.appendChild(input);
-        input.id = "inputTitle";
-        input.type = "text";
-        input.placeholder = "Give me a title?";
-    },
-    "generateLabel": function(text) {
+        let elNuevoLabelTitle = this.generateLabel("Title: ");
+        form.appendChild(elNuevoLabelTitle);
+        this.generateInput(form, "inputTitle", "text", "Give me a title");
+        
+        // <label>Year: </label> <input id="inputYear" type="text" placeholder="Give me a Year"/>  
+        form.appendChild(this.generateLabel("Year: "));
+        this.generateInput(form, "inputYear", "number", "Give me a year");
+ 
+        this.generateTable();
+        form.innerHTML += "<br/>";
+        this.generateButton(form, "btnAdd", "Add film", () => {
+            alert("Add");
+        });
+    },  
+    "generateLabel": function(text) {       // Función con funtion(p1, p2) {.. }
         let label = document.createElement("label");
         label.appendChild(document.createTextNode(text));
         return label;
+    }, 
+    "generateInput": (f, id, t, ph) => {  // Función con  (p1, p2) => {... } Función flecha o lamda
+        let input = document.createElement("input");
+        f.appendChild(input);
+        input.id = id;
+        input.type = t;
+        input.placeholder = ph;
+    },  
+    "generateButton": (f, id, val, functionOnClick) =>    
+    {
+        let but = document.createElement("input");
+        f.appendChild(but);
+        but.id = id;
+        but.type = "button";
+        but.value = val;
+        but.addEventListener("click", functionOnClick);
+    },
+    generateTable: function () { 
+        let table = document.createElement("table");
+        this.body.appendChild( table);
+        table.innerHTML += 
+`    <thead>
+        <tr>
+            <td>Title</td>
+            <td>Year</td>
+        </tr>
+    </thead>`;
     }
 }
