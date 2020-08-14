@@ -2,8 +2,9 @@ let view = {
     "initialize": function() {
         this.generateTitle();
         this.generateForm();
-        this.model = new Model();
+        // this.model = new Model();
     }, 
+    "model": new Model(),
     "body": document.getElementsByTagName("body")[0],
     "generateTitle": function() {
         // <h1 style="font-size: 22px; color: brown">Filmaffinity V2</h1>
@@ -17,12 +18,12 @@ let view = {
         let form = document.createElement("form");
         form.id = "filmForm";
         this.body.appendChild(form);
-        // EJ 1: Crear una función (método de view) que genere un label
+        /*// EJ 1: Crear una función (método de view) que genere un label
         // EJ 2: Para ese label, el método debe recibir un parámetro con el texo
         // Ej 3: y usar aquí para crear los label
         // EJ 3: y un input personalizado mediante parámetros (nombre campo, tipo campo...)
         // EJ 4: y usarla aquí mismo para crear los 3 inputs title, year, image
-
+*/
         // <label>Title: </label> <input id="inputTitle" type="text" placeholder="Give me a title"/>  
 
         let elNuevoLabelTitle = this.generateLabel("Title: ");
@@ -36,12 +37,12 @@ let view = {
         this.generateTable();
         form.innerHTML += "<br/>";
         // Nueva propiedad que guarda una referencia al botón Añadir
-        this.btnAdd = this.generateButton(form, "btnAdd", "Add film", () => {
+        this.generateButton(form, "btnAdd", "Add film", () => {
             let inTit = document.getElementById("inputTitle");
             let inYea = document.getElementById("inputYear");
-            this.model.addFilm(inTit.value, inYea.value);    
+            this.model.addFilm(inTit.value, inYea.value);   
+            this.updateTable(); 
         });
-
     },      
     "generateLabel": function(text) {       // Función con funtion(p1, p2) {.. }
         let label = document.createElement("label");
@@ -66,14 +67,27 @@ let view = {
         return but;
     },
     generateTable: function () { 
-        let table = document.createElement("table");
+        let table = document.createElement('table');
         this.body.appendChild( table);
-        table.innerHTML += 
+        table.innerHTML = 
 `    <thead>
         <tr>
             <td>Title</td>
             <td>Year</td>
         </tr>
-    </thead>`;
+    </thead>
+    <tbody id = "tbody_films">
+    </tbody>`;
+    },
+    updateTable: function() {
+        let tbodyFilms = document.getElementById('tbody_films');
+        tbodyFilms.innerHTML = "";
+        this.model.getFilms().forEach(film => {
+            tbodyFilms.innerHTML += 
+`<tr>
+    <td>${film.title}</td>
+    <td>${film.year}</td>
+</tr>`;
+        });
     }
 }
