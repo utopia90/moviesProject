@@ -2,6 +2,7 @@ let view = {
     "initialize": function() {
         this.generateTitle();
         this.generateForm();
+        this.model = new Model();
     }, 
     "body": document.getElementsByTagName("body")[0],
     "generateTitle": function() {
@@ -36,8 +37,11 @@ let view = {
         form.innerHTML += "<br/>";
         // Nueva propiedad que guarda una referencia al botón Añadir
         this.btnAdd = this.generateButton(form, "btnAdd", "Add film", () => {
-            alert("Add");
+            let inTit = document.getElementById("inputTitle");
+            let inYea = document.getElementById("inputYear");
+            this.model.addFilm(inTit.value, inYea.value);    
         });
+
     },      
     "generateLabel": function(text) {       // Función con funtion(p1, p2) {.. }
         let label = document.createElement("label");
