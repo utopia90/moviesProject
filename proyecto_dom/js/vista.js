@@ -34,10 +34,11 @@ let view = {
  
         this.generateTable();
         form.innerHTML += "<br/>";
-        this.generateButton(form, "btnAdd", "Add film", () => {
+        // Nueva propiedad que guarda una referencia al botón Añadir
+        this.btnAdd = this.generateButton(form, "btnAdd", "Add film", () => {
             alert("Add");
         });
-    },  
+    },      
     "generateLabel": function(text) {       // Función con funtion(p1, p2) {.. }
         let label = document.createElement("label");
         label.appendChild(document.createTextNode(text));
@@ -58,6 +59,7 @@ let view = {
         but.type = "button";
         but.value = val;
         but.addEventListener("click", functionOnClick);
+        return but;
     },
     generateTable: function () { 
         let table = document.createElement("table");
