@@ -33,6 +33,11 @@ let view = {
         // <label>Year: </label> <input id="inputYear" type="text" placeholder="Give me a Year"/>  
         form.appendChild(this.generateLabel("Year: "));
         this.generateInput(form, "inputYear", "number", "Give me a year");
+
+        form.appendChild(this.generateLabel("URL: "));
+        this.generateInput(form, "inputURL", "url", "Give me an image");
+
+
  
         this.generateTable();
         form.innerHTML += "<br/>";
@@ -40,7 +45,9 @@ let view = {
         this.generateButton(form, "btnAdd", "Add film", () => {
             let inTit = document.getElementById("inputTitle");
             let inYea = document.getElementById("inputYear");
-            this.model.addFilm(inTit.value, inYea.value);   
+            let inUrl = document.getElementById("inputURL");
+
+            this.model.addFilm(inTit.value, inYea.value, inUrl.value);   
             this.updateTable(); 
         });
     },      
@@ -74,6 +81,8 @@ let view = {
         <tr>
             <td>Title</td>
             <td>Year</td>
+            <td>Image</td>
+
         </tr>
     </thead>
     <tbody id = "tbody_films">
@@ -87,6 +96,8 @@ let view = {
 `<tr>
     <td>${film.title}</td>
     <td>${film.year}</td>
+    <td><img src='${film.url}'/></td>
+
 </tr>`;
         });
     }

@@ -2,11 +2,12 @@
 class Film {
 
     // La función especial que se encarga de inicializar el objeto
-    constructor (tit, ye) {
+    constructor (tit, ye, url) {
         // Declarando y asignando propiedades a este objeto en concreto (this)
         // Las propiedades también se las puede llamar variables miembro
         this.title = tit;   // No llevan let ni var
         this.year = ye;
+        this.url = url;
     }
     mostrarEnConsola() {
         console.log(`Peli: ${this.title} - ${this.year}`);
@@ -20,9 +21,9 @@ class Model {
     // Métodos a la altura del interior de la clase
     // OPERACIONES   CRUD
     // Create = addFilm
-    addFilm(ti, ye) {    
+    addFilm(ti, ye, url) {    
         // Creamos una nueva instancia (nuevo objeto) de tipo Film    
-        let fil = new Film(ti, ye);
+        let fil = new Film(ti, ye, url);
         fil.mostrarEnConsola();
         // Y lo añadimos al array
         this.films.push( fil );
